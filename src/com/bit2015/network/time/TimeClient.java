@@ -13,7 +13,7 @@ public class TimeClient {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		DatagramSocket datagramSocket=null;
-		String date="";
+		String date;
 		try {
 			//1.UDP 클라이언트 소켓 생성
 			datagramSocket=new DatagramSocket();

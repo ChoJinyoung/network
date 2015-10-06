@@ -27,16 +27,20 @@ public class TimeServer {
 				datagramSocket.receive(receivePacket);
 
 				// 3.수신 데이터 출력
+				String message = new String(receivePacket.getData(), 0,
+						receivePacket.getLength(), "UTF-8");
+				log("packet 수신:" + message);
+
 				SimpleDateFormat format = new SimpleDateFormat(
 						"yyyy-MM-dd HH:mm:ss a");
 				String date = format.format(new Date());
-				byte[] data=date.getBytes();
-				log("packet 수신");
+				byte[] data = date.getBytes();
 
 				// 4.데이터 보내기
 				DatagramPacket sendPacket = new DatagramPacket(
-						receivePacket.getData(), receivePacket.getLength(),
-						receivePacket.getAddress(), receivePacket.getPort());
+						data,data.length, receivePacket.getAddress(),
+						receivePacket.getPort());
+
 				datagramSocket.send(sendPacket);
 			}
 		} catch (IOException e) {
